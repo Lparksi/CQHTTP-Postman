@@ -1,0 +1,1365 @@
+{
+	"info": {
+		"_postman_id": "03ed552a-c16d-4fea-acce-d95a36715408",
+		"name": "CQHTTP",
+		"description": "CQHTTP的api测试整合\n\n所有没有参数和只有一个参数的api都是GET方法，其余都是POST方法\n\n\nBy:Parksi\n解释权归：Richard Chien 所有\n以GitHub账户为准https://github.com/richardchien\n",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "发送消息",
+			"item": [
+				{
+					"name": "发送消息",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:{{port}}/send_msg?message_type&message&auto_escape",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"send_msg"
+							],
+							"query": [
+								{
+									"key": "message_type",
+									"value": null,
+									"description": "消息类型，支持 private、group、discuss，分别对应私聊、群组、讨论组，如不传入，则根据传入的 *_id 参数判断"
+								},
+								{
+									"key": "user_id",
+									"value": null,
+									"description": "对方 QQ 号（消息类型为 private 时需要）",
+									"disabled": true
+								},
+								{
+									"key": "group_id",
+									"value": null,
+									"description": "群号（消息类型为 group 时需要）",
+									"disabled": true
+								},
+								{
+									"key": "discuss_id",
+									"value": null,
+									"description": "讨论组 ID（消息类型为 discuss 时需要）",
+									"disabled": true
+								},
+								{
+									"key": "message",
+									"value": null,
+									"description": "要发送的内容"
+								},
+								{
+									"key": "auto_escape",
+									"value": null,
+									"description": "消息内容是否作为纯文本发送（即不解析 CQ 码），只在 message 字段是字符串时有效"
+								}
+							]
+						},
+						"description": "/send_msg 发送消息\r\n"
+					},
+					"response": []
+				},
+				{
+					"name": "发送私聊消息",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:{{port}}/send_private_msg?user_id&message&auto_escape=",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"send_private_msg"
+							],
+							"query": [
+								{
+									"key": "user_id",
+									"value": null,
+									"description": "用户qq号"
+								},
+								{
+									"key": "message",
+									"value": null,
+									"description": "要发送的内容"
+								},
+								{
+									"key": "auto_escape",
+									"value": "",
+									"description": "消息内容是否作为纯文本发送（即不解析 CQ 码），只在 message 字段是字符串时有效\n"
+								}
+							]
+						},
+						"description": "/send_private_msg 发送私聊消息\r\n"
+					},
+					"response": []
+				},
+				{
+					"name": "发送群消息",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:{{port}}/send_group_msg?group_id&message&auto_escape=false",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"send_group_msg"
+							],
+							"query": [
+								{
+									"key": "group_id",
+									"value": null,
+									"description": "群号"
+								},
+								{
+									"key": "message",
+									"value": null,
+									"description": "要发送的内容"
+								},
+								{
+									"key": "auto_escape",
+									"value": "false",
+									"description": "消息内容是否作为纯文本发送（即不解析 CQ 码），只在 message 字段是字符串时有效"
+								}
+							]
+						},
+						"description": "/send_group_msg 发送群消息\r\n"
+					},
+					"response": []
+				},
+				{
+					"name": "发送讨论组消息",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:{{port}}/send_discuss_msg?discuss_id&message&auto_escape=false",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"send_discuss_msg"
+							],
+							"query": [
+								{
+									"key": "discuss_id",
+									"value": null,
+									"description": "讨论组 ID"
+								},
+								{
+									"key": "message",
+									"value": null,
+									"description": "要发送的内容"
+								},
+								{
+									"key": "auto_escape",
+									"value": "false",
+									"description": "消息内容是否作为纯文本发送（即不解析 CQ 码），只在 message 字段是字符串时有效"
+								}
+							]
+						},
+						"description": "/send_discuss_msg 发送讨论组消息\r\n"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "群管",
+			"item": [
+				{
+					"name": "撤回消息",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:{{port}}/delete_msg?message_id",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"delete_msg"
+							],
+							"query": [
+								{
+									"key": "message_id",
+									"value": null,
+									"description": "消息 ID"
+								}
+							]
+						},
+						"description": "/delete_msg 撤回消息\r\n"
+					},
+					"response": []
+				},
+				{
+					"name": "群组踢人",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:{{port}}/set_group_kick?group_id&user_id&reject_add_request=false",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"set_group_kick"
+							],
+							"query": [
+								{
+									"key": "group_id",
+									"value": null,
+									"description": "群号"
+								},
+								{
+									"key": "user_id",
+									"value": null,
+									"description": "要踢的 QQ 号"
+								},
+								{
+									"key": "reject_add_request",
+									"value": "false",
+									"description": "拒绝此人的加群请求"
+								}
+							]
+						},
+						"description": "/set_group_kick 群组踢人\r\n"
+					},
+					"response": []
+				},
+				{
+					"name": "群组单人禁言",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:{{port}}/set_group_ban?group_id&user_id&duration=",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"set_group_ban"
+							],
+							"query": [
+								{
+									"key": "group_id",
+									"value": null,
+									"description": "群号"
+								},
+								{
+									"key": "user_id",
+									"value": null,
+									"description": "要禁言的 QQ 号"
+								},
+								{
+									"key": "duration",
+									"value": "",
+									"description": "禁言时长，单位秒，0 表示取消禁言"
+								}
+							]
+						},
+						"description": "/set_group_ban 群组单人禁言\r\n"
+					},
+					"response": []
+				},
+				{
+					"name": "群组匿名用户禁言",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:{{port}}/set_group_anonymous_ban?group_id&anonymous&duration",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"set_group_anonymous_ban"
+							],
+							"query": [
+								{
+									"key": "group_id",
+									"value": null,
+									"description": "群号"
+								},
+								{
+									"key": "anonymous",
+									"value": null,
+									"description": "可选，要禁言的匿名用户对象（群消息上报的 anonymous 字段）"
+								},
+								{
+									"key": "anonymous_flag",
+									"value": null,
+									"description": "可选，要禁言的匿名用户的 flag（需从群消息上报的数据中获得）",
+									"disabled": true
+								},
+								{
+									"key": "string",
+									"value": null,
+									"description": "可选，要禁言的匿名用户的 flag（需从群消息上报的数据中获得）\n",
+									"disabled": true
+								},
+								{
+									"key": "duration",
+									"value": null,
+									"description": "禁言时长，单位秒，无法取消匿名用户禁言"
+								}
+							]
+						},
+						"description": "/set_group_anonymous_ban 群组匿名用户禁言\r\n"
+					},
+					"response": []
+				},
+				{
+					"name": "群组全员禁言",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:{{port}}/set_group_whole_ban?group_id&enable=true",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"set_group_whole_ban"
+							],
+							"query": [
+								{
+									"key": "group_id",
+									"value": null,
+									"description": "群号"
+								},
+								{
+									"key": "enable",
+									"value": "true",
+									"description": "是否禁言"
+								}
+							]
+						},
+						"description": "/set_group_whole_ban 群组全员禁言\r\n"
+					},
+					"response": []
+				},
+				{
+					"name": "群组设置管理员",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{port}}:{{port}}/set_group_admin?group_id&user_id&enable=true",
+							"host": [
+								"{{port}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"set_group_admin"
+							],
+							"query": [
+								{
+									"key": "group_id",
+									"value": null,
+									"description": "群号"
+								},
+								{
+									"key": "user_id",
+									"value": null,
+									"description": "要设置管理员的 QQ 号"
+								},
+								{
+									"key": "enable",
+									"value": "true",
+									"description": "true 为设置，false 为取消"
+								}
+							]
+						},
+						"description": "/set_group_admin 群组设置管理员\r\n"
+					},
+					"response": []
+				},
+				{
+					"name": "群组匿名",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:{{port}}/set_group_anonymous?group_id&enable=true",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"set_group_anonymous"
+							],
+							"query": [
+								{
+									"key": "group_id",
+									"value": null,
+									"description": "群号"
+								},
+								{
+									"key": "enable",
+									"value": "true",
+									"description": "是否允许匿名聊天"
+								}
+							]
+						},
+						"description": "/set_group_anonymous 群组匿名\r\n"
+					},
+					"response": []
+				},
+				{
+					"name": "设置群名片（群备注）",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:{{port}}/set_group_card?group_id&user_id&card",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"set_group_card"
+							],
+							"query": [
+								{
+									"key": "group_id",
+									"value": null,
+									"description": "群号"
+								},
+								{
+									"key": "user_id",
+									"value": null,
+									"description": "要设置的 QQ 号"
+								},
+								{
+									"key": "card",
+									"value": null,
+									"description": "群名片内容，不填或空字符串表示删除群名片"
+								}
+							]
+						},
+						"description": "/set_group_card 设置群名片（群备注）\r\n"
+					},
+					"response": []
+				},
+				{
+					"name": "设置群组专属头衔",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:{{port}}/set_group_special_title?group_id&user_id&special_title&duration",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"set_group_special_title"
+							],
+							"query": [
+								{
+									"key": "group_id",
+									"value": null,
+									"description": "群号"
+								},
+								{
+									"key": "user_id",
+									"value": null,
+									"description": "要设置的 QQ 号"
+								},
+								{
+									"key": "special_title",
+									"value": null,
+									"description": "专属头衔，不填或空字符串表示删除专属头衔"
+								},
+								{
+									"key": "duration",
+									"value": null,
+									"description": "专属头衔有效期，单位秒，-1 表示永久，不过此项似乎没有效果，可能是只有某些特殊的时间长度有效，有待测试"
+								}
+							]
+						},
+						"description": "/set_group_special_title 设置群组专属头衔\r\n"
+					},
+					"response": []
+				},
+				{
+					"name": "退出讨论组",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:{{port}}/set_discuss_leave?discuss_id",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"set_discuss_leave"
+							],
+							"query": [
+								{
+									"key": "discuss_id",
+									"value": null,
+									"description": "讨论组 ID（正常情况下看不到，需要从讨论组消息上报的数据中获得）"
+								}
+							]
+						},
+						"description": "/set_discuss_leave 退出讨论组\r\n"
+					},
+					"response": []
+				},
+				{
+					"name": "退出群组",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:{{port}}/set_group_leave?group_id&is_dismiss=false",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"set_group_leave"
+							],
+							"query": [
+								{
+									"key": "group_id",
+									"value": null,
+									"description": "群号"
+								},
+								{
+									"key": "is_dismiss",
+									"value": "false",
+									"description": "是否解散，如果登录号是群主，则仅在此项为 true 时能够解散"
+								}
+							]
+						},
+						"description": "/set_group_leave 退出群组\r\n"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "处理请求",
+			"item": [
+				{
+					"name": "处理加好友请求",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:{{port}}/set_friend_add_request?flag&approve=true&remark",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"set_friend_add_request"
+							],
+							"query": [
+								{
+									"key": "flag",
+									"value": null,
+									"description": "加好友请求的 flag（需从上报的数据中获得）"
+								},
+								{
+									"key": "approve",
+									"value": "true",
+									"description": "是否同意请求"
+								},
+								{
+									"key": "remark",
+									"value": null,
+									"description": "添加后的好友备注（仅在同意时有效）"
+								}
+							]
+						},
+						"description": "/set_friend_add_request 处理加好友请求\r\n"
+					},
+					"response": []
+				},
+				{
+					"name": "处理加群请求／邀请",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "/set_group_add_request?flag&sub_type&approve=true&reason",
+							"path": [
+								"set_group_add_request"
+							],
+							"query": [
+								{
+									"key": "flag",
+									"value": null,
+									"description": "加群请求的 flag（需从上报的数据中获得）"
+								},
+								{
+									"key": "sub_type",
+									"value": null,
+									"description": "add 或 invite，请求类型（需要和上报消息中的 sub_type 字段相符）"
+								},
+								{
+									"key": "type",
+									"value": null,
+									"description": "add 或 invite，请求类型（需要和上报消息中的 sub_type 字段相符）",
+									"disabled": true
+								},
+								{
+									"key": "approve",
+									"value": "true",
+									"description": "是否同意请求／邀请"
+								},
+								{
+									"key": "reason",
+									"value": null,
+									"description": "拒绝理由（仅在拒绝时有效）"
+								}
+							]
+						},
+						"description": "/set_group_add_request 处理加群请求／邀请\r\n"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "获取信息",
+			"item": [
+				{
+					"name": "获取登录号信息",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:{{port}}/get_login_info",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"get_login_info"
+							]
+						},
+						"description": "/get_login_info 获取登录号信息\r\n"
+					},
+					"response": []
+				},
+				{
+					"name": "获取陌生人信息",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:{{port}}/get_stranger_info?user_id&no_cache",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"get_stranger_info"
+							],
+							"query": [
+								{
+									"key": "user_id",
+									"value": null,
+									"description": "QQ 号"
+								},
+								{
+									"key": "no_cache",
+									"value": null,
+									"description": "是否不使用缓存（使用缓存可能更新不及时，但响应更快）"
+								}
+							]
+						},
+						"description": "/get_stranger_info 获取陌生人信息\r\n"
+					},
+					"response": []
+				},
+				{
+					"name": "获取好友列表",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:{{port}}/get_friend_list",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"get_friend_list"
+							]
+						},
+						"description": "/get_friend_list 获取好友列表\r\n"
+					},
+					"response": []
+				},
+				{
+					"name": "获取群列表",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:{{port}}/get_group_list",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"get_group_list"
+							]
+						},
+						"description": "/get_group_list 获取群列表\r\n"
+					},
+					"response": []
+				},
+				{
+					"name": "获取群信息",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:{{port}}/get_group_info?group_id&no_cache=false",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"get_group_info"
+							],
+							"query": [
+								{
+									"key": "group_id",
+									"value": null,
+									"description": "群号"
+								},
+								{
+									"key": "no_cache",
+									"value": "false",
+									"description": "是否不使用缓存（使用缓存可能更新不及时，但响应更快）"
+								}
+							]
+						},
+						"description": "/get_group_info 获取群信息\r\n"
+					},
+					"response": []
+				},
+				{
+					"name": "获取群成员信息",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:{{port}}/get_group_member_info?group_id&user_id&no_cache=false",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"get_group_member_info"
+							],
+							"query": [
+								{
+									"key": "group_id",
+									"value": null,
+									"description": "群号"
+								},
+								{
+									"key": "user_id",
+									"value": null,
+									"description": "QQ 号"
+								},
+								{
+									"key": "no_cache",
+									"value": "false",
+									"description": "是否不使用缓存（使用缓存可能更新不及时，但响应更快）"
+								}
+							]
+						},
+						"description": "/get_group_member_info 获取群成员信息\r\n"
+					},
+					"response": []
+				},
+				{
+					"name": "获取群成员列表",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:{{port}}/get_group_member_list?group_id",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"get_group_member_list"
+							],
+							"query": [
+								{
+									"key": "group_id",
+									"value": null,
+									"description": "群号"
+								}
+							]
+						},
+						"description": "/get_group_member_list 获取群成员列表\r\n"
+					},
+					"response": []
+				}
+			],
+			"description": "获取各种信息",
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "获取Cookies",
+			"item": [
+				{
+					"name": "获取 Cookies",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:{{port}}/get_cookies?domain",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"get_cookies"
+							],
+							"query": [
+								{
+									"key": "domain",
+									"value": null,
+									"description": "需要获取 cookies 的域名"
+								}
+							]
+						},
+						"description": "/get_cookies 获取 Cookies\r\n"
+					},
+					"response": []
+				},
+				{
+					"name": "获取 CSRF Token",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:{{port}}/get_csrf_token",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"get_csrf_token"
+							]
+						},
+						"description": "/get_csrf_token 获取 CSRF Token\r\n"
+					},
+					"response": []
+				},
+				{
+					"name": "获取 QQ 相关接口凭证",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:{{port}}/get_credentials?domain",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"get_credentials"
+							],
+							"query": [
+								{
+									"key": "domain",
+									"value": null,
+									"description": "需要获取 cookies 的域名"
+								}
+							]
+						},
+						"description": "/get_credentials 获取 QQ 相关接口凭证\r\n"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "图片/语音",
+			"item": [
+				{
+					"name": "获取语音",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:{{port}}/get_record?file&out_format&full_path=false",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"get_record"
+							],
+							"query": [
+								{
+									"key": "file",
+									"value": null,
+									"description": "收到的语音文件名（CQ 码的 file 参数），如 0B38145AA44505000B38145AA4450500.silk"
+								},
+								{
+									"key": "out_format",
+									"value": null,
+									"description": "要转换到的格式，目前支持 mp3、amr、wma、m4a、spx、ogg、wav、flac"
+								},
+								{
+									"key": "full_path",
+									"value": "false",
+									"description": "是否返回文件的绝对路径（Windows 环境下建议使用，Docker 中不建议）"
+								}
+							]
+						},
+						"description": "/get_record 获取语音\r\n"
+					},
+					"response": []
+				},
+				{
+					"name": "获取图片",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:{{port}}/get_image?file",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"get_image"
+							],
+							"query": [
+								{
+									"key": "file",
+									"value": null,
+									"description": "收到的图片文件名（CQ 码的 file 参数），如 6B4DE3DFD1BD271E3297859D41C530F5.jpg"
+								}
+							]
+						},
+						"description": "/get_image 获取图片\r\n"
+					},
+					"response": []
+				},
+				{
+					"name": "检查是否可以发送图片",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:{{port}}/can_send_image",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"can_send_image"
+							]
+						},
+						"description": "/can_send_image 检查是否可以发送图片\r\n"
+					},
+					"response": []
+				},
+				{
+					"name": "检查是否可以发送语音",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:{{port}}/can_send_record",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"can_send_record"
+							]
+						},
+						"description": "/can_send_record 检查是否可以发送语音\r\n"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "酷Q与CQHTTP",
+			"item": [
+				{
+					"name": "获取插件运行状态",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:{{port}}/get_status",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"get_status"
+							]
+						},
+						"description": "/get_status 获取插件运行状态\r\n"
+					},
+					"response": []
+				},
+				{
+					"name": "获取 酷Q 及 CQHTTP 插件的版本信息",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:{{port}}/get_version_info",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"get_version_info"
+							]
+						},
+						"description": "/get_version_info 获取 酷Q 及 CQHTTP 插件的版本信息\r\n"
+					},
+					"response": []
+				},
+				{
+					"name": "重启 CQHTTP 插件",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:{{port}}/set_restart_plugin?delay",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"set_restart_plugin"
+							],
+							"query": [
+								{
+									"key": "delay",
+									"value": null,
+									"description": "要延迟的毫秒数，如果默认情况下无法重启，可以尝试设置延迟为 2000 左右"
+								}
+							]
+						},
+						"description": "/set_restart_plugin 重启 CQHTTP 插件\r\n"
+					},
+					"response": []
+				},
+				{
+					"name": "清理数据目录",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:{{port}}/clean_data_dir?data_dir",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"clean_data_dir"
+							],
+							"query": [
+								{
+									"key": "data_dir",
+									"value": null,
+									"description": "收到清理的目录名，支持 image、record、show、bface"
+								}
+							]
+						},
+						"description": "/clean_data_dir 清理数据目录\r\n"
+					},
+					"response": []
+				},
+				{
+					"name": "清理插件日志",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:{{port}}/clean_plugin_log",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"clean_plugin_log"
+							]
+						},
+						"description": "/clean_plugin_log 清理插件日志\r\n"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "试验性 API ",
+			"item": [
+				{
+					"name": "获取好友列表",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:{{port}}/_get_friend_list?flat=false",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"_get_friend_list"
+							],
+							"query": [
+								{
+									"key": "flat",
+									"value": "false",
+									"description": "是否获取扁平化的好友数据，即所有好友放在一起、所有分组放在一起，而不是按分组层级"
+								}
+							]
+						},
+						"description": "/_get_friend_list 获取好友列表\r\n"
+					},
+					"response": []
+				},
+				{
+					"name": "获取群信息",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:{{port}}/_get_group_info?group_id",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"_get_group_info"
+							],
+							"query": [
+								{
+									"key": "group_id",
+									"value": null,
+									"description": "要查询的群号"
+								}
+							]
+						},
+						"description": "/_get_group_info 获取群信息\r\n"
+					},
+					"response": []
+				},
+				{
+					"name": "获取会员信息",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "/_get_vip_info?user_id",
+							"path": [
+								"_get_vip_info"
+							],
+							"query": [
+								{
+									"key": "user_id",
+									"value": null,
+									"description": "要查询的 QQ 号"
+								}
+							]
+						},
+						"description": "/_get_vip_info 获取会员信息\r\n"
+					},
+					"response": []
+				},
+				{
+					"name": "获取群公告",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:{{port}}/_get_group_notice?group_id",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"_get_group_notice"
+							],
+							"query": [
+								{
+									"key": "group_id",
+									"value": null,
+									"description": "群号"
+								}
+							]
+						},
+						"description": "/_get_group_notice 获取群公告\r\n"
+					},
+					"response": []
+				},
+				{
+					"name": "发布群公告",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:{{port}}/_send_group_notice?group_id&title&content",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"_send_group_notice"
+							],
+							"query": [
+								{
+									"key": "group_id",
+									"value": null,
+									"description": "群号"
+								},
+								{
+									"key": "title",
+									"value": null,
+									"description": "标题"
+								},
+								{
+									"key": "content",
+									"value": null,
+									"description": "内容"
+								}
+							]
+						},
+						"description": "/_send_group_notice 发布群公告\r\n"
+					},
+					"response": []
+				},
+				{
+					"name": "重启 酷Q，并以当前登录号自动登录（需勾选快速登录）",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:{{port}}/_set_restart?clean_log=false&clean_cache=false&clean_event=false",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"_set_restart"
+							],
+							"query": [
+								{
+									"key": "clean_log",
+									"value": "false",
+									"description": "是否在重启时清空 酷Q 的日志数据库（log*.db）"
+								},
+								{
+									"key": "clean_cache",
+									"value": "false",
+									"description": "是否在重启时清空 酷Q 的缓存数据库（cache.db）"
+								},
+								{
+									"key": "clean_event",
+									"value": "false",
+									"description": "是否在重启时清空 酷Q 的事件数据库（eventv2.db）"
+								}
+							]
+						},
+						"description": "/_set_restart 重启 酷Q，并以当前登录号自动登录（需勾选快速登录）\r\n"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "发送好友赞",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{host}}:{{port}}/send_like?user_id&times",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"send_like"
+					],
+					"query": [
+						{
+							"key": "user_id",
+							"value": null,
+							"description": "对方 QQ 号"
+						},
+						{
+							"key": "times",
+							"value": null,
+							"description": "赞的次数，每个好友每天最多 10 次"
+						}
+					]
+				},
+				"description": "/send_like 发送好友赞\r\n"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "bb2e68ba-a9c2-4330-a493-454167a8c32c",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "badc2158-de5c-47e7-b700-e0959db1e803",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
